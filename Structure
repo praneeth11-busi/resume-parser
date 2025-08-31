@@ -1,0 +1,16 @@
+Project Structure
+
+resume_parser/
+├── app.py
+├── config.py
+├── models.py
+├── parser/
+│   ├── __init__.py
+│   ├── pdf_parser.py
+│   ├── docx_parser.py
+│   └── text_processor.py
+├── templates/
+│   ├── index.html
+│   └── results.html
+├── requirements.txt
+└── README.md
