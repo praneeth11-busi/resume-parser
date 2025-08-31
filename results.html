@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parse Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Resume Parse Results</h1>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                Candidate Information
+            </div>
+            <div class="card-body">
+                <p><strong>Name:</strong> {{ parsed_data.name }}</p>
+                <p><strong>Email:</strong> {{ parsed_data.email }}</p>
+                <p><strong>Phone:</strong> {{ parsed_data.phone }}</p>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                Skills
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for skill in parsed_data.skills %}
+                    <div class="col-md-3 mb-2">
+                        <span class="badge bg-primary">{{ skill.name }} ({{ skill.category }})</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                Experience
+            </div>
+            <div class="card-body">
+                {% for exp in parsed_data.experience %}
+                <div class="mb-3">
+                    <h5>{{ exp.position }}</h5>
+                    <p class="mb-1"><strong>{{ exp.company }}</strong> - {{ exp.duration }}</p>
+                    {% if exp.description %}
+                    <p>{{ exp.description }}</p>
+                    {% endif %}
+                </div>
+                <hr>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header">
+                Education
+            </div>
+            <div class="card-body">
+                {% for edu in parsed_data.education %}
+                <div class="mb-3">
+                    <h5>{{ edu.degree }}</h5>
+                    <p class="mb-1"><strong>{{ edu.institution }}</strong> - {{ edu.year }}</p>
+                </div>
+                <hr>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <a href="/" class="btn btn-primary">Parse Another Resume</a>
+    </div>
+</body>
+</html>
